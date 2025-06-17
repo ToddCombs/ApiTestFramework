@@ -4,7 +4,8 @@
 # @File     :api_client.py
 # @Software :PyCharm
 # 接口&压力测试客户端
-
+from gevent import monkey
+monkey.patch_all()
 import requests
 import json
 import time
@@ -75,7 +76,7 @@ class APIClient:
 class LocustUser(FastHttpUser):
     """
     Locust压力测试用户类，用来模拟用户行为，基于HttpUserLocust使用的是异步请求方式，
-    与requests的同步方式不同。
+    与requests的同步方式不同。这里选择更快的FastHttpUser
     """
     wait_time = between(1, 3)   # 模拟用户操作间隔时间。
 
